@@ -1,0 +1,32 @@
+<%- include ("../layouts/adminHeader") %>
+<section class="p-5 my-container">
+    <button class="btn my-4" id="menu-btn">Toggle Sidebar</button>
+    <div>
+        <a href="/api/admin/cinema/cinemas">quay lai</a>
+    </div>
+    
+<form action="addcinema" method="POST" enctype="multipart/form-data">
+    <div class="col-4 px-3 py-2">
+        <label for="name" class="form-label">name</label>
+        <input class="form-control" type="text" name='name' id="name" value=<%= name %> >
+    </div>
+    <div class="col-5 px-3 py-2">
+        <label for="address" class="form-label">Address</label>
+        <input class="form-control" type="text" name="address" id="address" value="<%= address %>" >
+    </div>
+    <div class="col-4 px-3 py-2">
+        <label for="image" class="form-label"></label>
+        <input class="form-control" type="file" name="cinema_img" id="cinema_img"  >
+    </div>
+    <div class="col-5 px-3 py-2">
+        <label for="cineplexId" class="form-label"> Cineplex</label>
+        <select name="cineplexId" id="cineplexId">
+            <% cineplexes.forEach((cineplex)=>{ %>
+                <option value="<%=cineplex.id%>"><%= cineplex.name %></option>
+            <% }) %>
+        </select>
+    </div>
+    <button class="btn btn-primary col-1">submit</button>
+</form>
+</section>
+<%- include ("../layouts/adminFooter") %>

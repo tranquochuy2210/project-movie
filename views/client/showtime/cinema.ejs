@@ -1,0 +1,25 @@
+<%- include ('../layouts/header') %>
+<h1><%= cinema.name %></h1>
+<div class="container px-5" style="height: 80%;">
+    <table class="table" style="color: white">
+        <thead>
+            <tr>
+              <th>name</th>
+              <th>showtime</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% cinema_movies.forEach((cinema_movie)=>{ %>
+                <tr>
+                    <td><%=cinema_movie.Movie.name%></td>
+                    <td> <a href="/movie/<%=cinema_movie.Movie.id%>">xem</a></td>
+                </tr>
+            <% }) %>
+          </tbody>
+    </table>
+</div>
+
+    
+
+
+<%- include ('../layouts/footer') %>

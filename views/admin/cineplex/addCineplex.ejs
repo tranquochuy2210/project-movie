@@ -1,0 +1,20 @@
+<%- include ("../layouts/adminHeader") %>
+<section class="p-4 my-container">
+    <button class="btn my-4" id="menu-btn">Toggle Sidebar</button>
+   <div>
+    <a href="/api/admin/cineplex/cineplexes"><button class="btn btn-primary">quay lại</button></a>
+   </div>
+<form action="addcineplex" method="POST" enctype="multipart/form-data">
+    <div class="col-4">
+        <label for="name" class="form-label">name</label>
+        <input type="text" class="form-control" required id="name" name="name" id="name" value=<%=name%>>
+    </div>
+    <div class="col-2">
+        <label for="logo" class="form-label"></label>
+        <input type="file" class="form-control" name="cineplex_logo" id="logo">
+    </div>
+    
+    <button class="btn btn-primary mt-3">submit</button>
+</form>
+</section>
+<%- include ("../layouts/adminFooter") %>

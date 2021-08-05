@@ -1,0 +1,45 @@
+<%- include ("../layouts/adminHeader") %>
+<section class="p-4 my-container">
+  <button class="btn my-4" id="menu-btn">Toggle Sidebar</button>
+<form action="addmovie" method="GET">
+  <button class="btn btn-primary">add movie</button>
+</form>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col" colspan="2">Action</th>
+      <th scope="col">Showed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% movies.forEach(function(movie){ %>
+    <tr>
+      <th scope="row"><%=movie.id%></th>
+      <td><%= movie.name %></td>
+      <td><a href="editmovie/<%= movie.id%>">edit</a> </td>
+      <td><a href="deletemovie/<%=movie.id%>" onclick="return confirm('Are you sure, you want to delete it?')">delete</a></td>
+      <td style="width:30%"><button onclick="showAndHide('show<%=movie.id%>')" class="showcinema " id="btn<%=movie.id%>">show cinema</button><br>
+        <div class="hidden" id="show<%=movie.id%>">
+          <p><b>This movie is showed on:</b> </p>
+         <%movie.cinemas.forEach((cinema)=>{%> 
+          <p><%=cinema%></p>
+          <%})%>
+        </div>
+      </td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+</section>
+
+<script>
+  function showAndHide(id){
+    let target=document.getElementById(id)
+    target.classList.toggle('hidden')
+  }
+</script>
+<%- include ("../layouts/adminFooter") %>
+
+

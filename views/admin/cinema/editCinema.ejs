@@ -1,0 +1,38 @@
+<%- include ("../layouts/adminHeader") %>
+<section class="p-5 my-container">
+    <button class="btn my-4" id="menu-btn">Toggle Sidebar</button>
+    <div>
+        <a href="/api/admin/cinema/cinemas">quay lại</a>
+    </div>
+<form action="/api/admin/cinema/editcinema/<%=id%>" method="POST" enctype="multipart/form-data">
+    <div>
+        <label class="form-label" for="name">Tên</label>
+        <input class="form-control" type="text" name='name' id="name" value=<%= name %> >
+    </div>
+    <div>
+        <label class="form-label" for="address">Địa chỉ</label>
+        <input class="form-control" type="text" name="address" id="address" value="<%= address %>" >
+    </div>
+    <div>
+        <label class="form-label" for="image">Ảnh</label>
+        <input class="form-control" type="file" name="cinema_img" id="cinema_img"  >
+    </div>
+    <div>
+        <label class="form-label" for="cineplexId"> Cụm rạp</label>
+        <select  name="cineplexId" id="cineplexId">
+            <% cineplexes.forEach((cineplex)=>{ %>
+                <%if(cineplex.id===cineplexId){%>
+                    <option value="<%=cineplex.id%>" selected><%= cineplex.name %></option>
+                <%}else{%>
+                    <option value="<%=cineplex.id%>"><%= cineplex.name %></option>
+                
+            <% }}) %>
+        </select>
+    </div>
+    
+    <button>submit</button>
+    </form>
+<h3>Ảnh cũ</h3>
+<img src="<%=old_image%>" alt="">
+</section>
+<%- include ("../layouts/adminFooter") %>

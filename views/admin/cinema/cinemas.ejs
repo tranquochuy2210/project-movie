@@ -1,0 +1,35 @@
+<%-include ("../layouts/adminHeader") %>
+<section class="p-5 my-container">
+    <button class="btn my-4" id="menu-btn">Toggle Sidebar</button>
+<form action="addcinema" method="GET">
+    <button class="btn btn-primary">add cinema</button>
+</form>
+<table class="table">
+    <thead>
+      <tr>
+        
+        <th scope="col">name</th>
+        <th scope="col">address</th>
+        <th scope="col">image</th>
+        <th scope="col">cineplex</th>
+        <th scope="col" colspan="2">action</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% cinemas.forEach((cinema)=>{ %>
+            <tr>
+                <th><p><%=cinema.name %></p></th>
+                <td><p><%=cinema.address %></p></td>
+                <td><img src="<%=cinema.image%>" alt="" width="60" height="50"></td> 
+                <td><%=cinema.Cineplex.name%></td>
+                <td><a href="deletecinema/<%=cinema.id %>">delete</a></td>
+                <td><a href="editcinema/<%=cinema.id %>">edit</a></td>
+            </tr>
+            <% }) %>
+    </tbody>
+  </table>
+
+        
+
+</section>
+<%-include ("../layouts/adminFooter") %>

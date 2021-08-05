@@ -1,0 +1,30 @@
+<%- include ("../layouts/header") %>
+<div id="cineplexes" class="container overflow-hidden">
+    <div class="row gy-5">
+        <% cineplexes.forEach((cineplex)=>{ %>
+            <div class="col px-5">
+                <table class="gx-5">
+                    <tr>
+                        <th><%=cineplex.name%></th>
+                    </tr>
+                    <%cineplex.cinema.forEach((cinema)=>{%>
+                        <tr>
+                            <td><a href="/cinema/<%=cinema.id%>" style="text-decoration: none;color: white;"><%=cinema.name%></a> </td>
+                        </tr>
+                    <% }) %>
+                   
+                </table >
+            </div>
+            
+        <% }) %>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+
+<%- include ("../layouts/footer") %>

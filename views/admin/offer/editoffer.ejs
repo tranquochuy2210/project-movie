@@ -1,0 +1,36 @@
+<%- include ("../layouts/adminHeader") %>
+<section class="p-5 my-container">
+    <button class="btn my-4" id="menu-btn">Toggle Sidebar</button> <br>
+    <a href="/api/admin/offer/offers">quay lại</a>
+    <form action="" class="row ms-auto col-10" method="POST" enctype="multipart/form-data">
+        <div class="col-5">
+            <label for="name" class="form-label">tên</label>
+            <input type="text" class="form-control" name="name" value="<%=name%>" id="name">
+        </div>
+        <div class="col-3">
+            <label for="image" class="form-label">ảnh</label>
+            <input type="file" class="form-control" name="offer_image" value="<%=image%>" id="image">
+        </div>
+        <div class="col-5">
+            <p>mô tả</p>
+            <textarea name="description" class="form-control" cols="30" rows="10"><%=description%></textarea>
+        </div>
+        <div class="py-4">
+            <input class="form-check-input" type="checkbox" name="public"  id="public" value="true" <%=public?"checked":''%>>
+            <label class="form-check-label" for="public">
+              sử dụng
+            </label>
+        </div>
+        <div >
+            <button class="btn btn-primary" >sửa</button>
+        </div>
+    </form>
+</section>
+<script>
+    window.addEventListener('load',()=>{
+        // if(document.getElementById('public').value="true"){
+        //     document.getElementById('public').checked=true
+        // }
+    })
+</script>
+<%- include ("../layouts/adminFooter") %>

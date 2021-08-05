@@ -1,0 +1,32 @@
+<%- include ("../layouts/adminHeader") %>
+
+<section class="p-4 my-container px-5">
+    <button class="btn my-4" id="menu-btn">Toggle Sidebar</button> <br>
+    <form action="/api/admin/page/addpage" method="GET">
+        <button class="btn btn-primary">Add page</button>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr >
+                <th>Title</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody >
+            <% pages.forEach((page)=>{%>
+                <tr>
+                    <td><%=page.title%></td>
+                    <td><a href="/api/admin/page/editpage/<%=page.id%>">Edit</a></td>
+                    <td><a href="/api/admin/page/deletepage/<%=page.id%>">Delete</a></td>
+                </tr>
+            <% }) %>
+
+        </tbody>
+
+    </table>
+
+</section>
+
+<%- include ("../layouts/adminFooter") %>

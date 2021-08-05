@@ -1,0 +1,23 @@
+<%- include ("../layouts/adminHeader") %>
+<section class="p-5 my-container">
+    <button class="btn my-4" id="menu-btn">Toggle Sidebar</button> <br>
+    <a href="/api/admin/page/pages">back</a>
+    <form action="/api/admin/page/addpage" method="POST">
+        <div class="col-6">
+            <label for="title" class="form-label" >title</label>
+            <input type="text" class="form-control" value="<%=title%>" name="title" id="title" required>
+        </div>
+        <div class="col-6">
+            <label for="slug" class="form-label">slug</label>
+            <input type="text" class="form-control" value="<%=slug%>" name="slug" id="slug">
+        </div>
+        <div class="col-6">
+            <label for="ta" class="form-label">content </label> <br>
+            <textarea name="content" id="ta" cols="30" rows="20" ><%=content%></textarea>
+        </div>
+        <button class="btn btn-primary">add page</button>
+        
+    </form>
+
+</section>
+<%- include ("../layouts/adminFooter") %>

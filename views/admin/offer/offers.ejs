@@ -1,0 +1,33 @@
+<%- include ("../layouts/adminHeader") %>
+<section class="p-5 my-container">
+    <button class="btn my-4" id="menu-btn">Toggle Sidebar</button> <br>
+    <a href="/api/admin/offer/add-offer"> <button class="btn btn-primary">thêm khuyến mãi </button></a>
+   <table class="table">
+    <thead>
+        <th scope="col" class="col-3">tên</th>
+        <th scope="col" class="col-2">ảnh</th>
+        <th scope="col" class="col-2">tình trạng</th>
+        <th scope="col" class="col-1">chỉnh sửa</th>
+        <th scope="col" class="col-1">xóa</th>
+    </thead>
+    <tbody>
+        <% offers.forEach((offer)=>{ %>
+            <tr>
+                <td><%= offer.name %></td>
+                <td><img src="<%=offer.image %>" width="100px" height="70px" alt=""></td>
+                <td><%if(offer.public){%>
+                    <span><i class="fas fa-check"></i></span>
+                <% }else{ %>
+                    <span><i class="fas fa-times"></i></span>
+                <% } %>
+            </td>
+                <td><a href="/api/admin/offer/edit-offer/<%=offer.id%>" >sửa</a></td>
+                <td><a href="/api/admin/offer/delete-offer/<%=offer.id%>" onclick="return confirm('Are you sure, you want to delete it?')">xóa</a></td>
+            </tr>
+        <% }) %>
+    </tbody>
+   </table>
+    
+
+</section>
+<%- include ("../layouts/adminFooter") %>

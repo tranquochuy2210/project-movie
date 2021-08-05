@@ -1,0 +1,19 @@
+<%- include("../layouts/adminHeader")%>
+      
+        <div class="col-4 ms-auto row-10 me-auto my-5 p-5 border border border-dark">
+          <h1>Login</h1>
+          <form action="login" method="POST">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="input your Email" required>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" name="password"placeholder="input your Password" required>
+            </div>
+        
+          <button class="btn btn-primary">Login</button>  
+        </form>
+        <a href="/admin/register"><h3>register</h3> </a>  
+        </div>
+  <%- include("../layouts/adminFooter")%>

@@ -1,0 +1,101 @@
+<%-include ("../layouts/header") %>
+
+
+<div class="container py-4" style="min-height: 80vh;">
+    <button class="btn btn-primary" id="unpaid-btn">chưa thanh toán</button> 
+    <button class="btn btn-primary" id="paid-btn">đã thanh toán</button>   
+    <button class="btn btn-primary" id="change-info-btn">chỉnh sửa thông tin</button> 
+    <table  class="table " style="color:white;">
+        <thead>
+            <tr >
+                <th class="col-1">Ghế</th>
+                <th class="col-2">rạp</th>
+                <th class="col-2">địa chỉ</th>
+                <th class="col-2">tên phim</th>
+                <th class="col-2">thời gian</th>
+                <th class="col-1">giá</th>
+                <th class="col-1">thanh toán</th>
+                <th class="col-1">trả vé</th>
+            </tr>
+        </thead>
+        <tbody class="unpaid-ticket">           
+            <% pendingTickets.forEach((ticket)=>{%>
+                <tr  >
+                    <td class="ticket-id hidden"><%=ticket.id%></td>
+                    <td><%=ticket.Seat.name%></td>
+                    <td><%=ticket.Seat.Showtime.Cinema_movie.Cinema.name%></td>
+                    <td><%=ticket.Seat.Showtime.Cinema_movie.Cinema.address%></td>
+                    <td><%=ticket.Seat.Showtime.Cinema_movie.Movie.name%></td>
+                    <td><%=ticket.Seat.Showtime.startTime%></td>
+                    <td class="price"><%=ticket.Seat.price%></td>
+                    <td><a href="/payment/<%=ticket.id%>" onclick="return confirm('bạn có muốn thanh toán vé này không?')">thanh toan</a></td>
+                    <td><a href="/deleteticket/<%=ticket.id%>" onclick="return confirm('xác nhận hủy vé?')">tra ve</a></td>
+                  
+                </tr>
+                <% }) %>
+            </tbody>
+        <tbody class="paid-ticket hidden" >
+            <% completeTickets.forEach((ticket)=>{%>
+                <tr  >
+                    <td class="ticket-id hidden"><%=ticket.id%></td>
+                    <td><%=ticket.Seat.name%></td>
+                    <td><%=ticket.Seat.Showtime.Cinema_movie.Cinema.name%></td>
+                    <td><%=ticket.Seat.Showtime.Cinema_movie.Cinema.address%></td>
+                    <td><%=ticket.Seat.Showtime.Cinema_movie.Movie.name%></td>
+                    <td><%=ticket.Seat.Showtime.startTime%></td>
+                    <td><%=ticket.Seat.price%></td>
+                    <td>đã thanh toán</td>
+                    <td><a href="/deleteticket/<%=ticket.id%>">xóa</a></td>
+                </tr>
+            <% }) %>
+        </tbody>
+            
+        </table>
+        <div class="row col-4 ms-auto" id="payment" >
+            <p class="col-3"> tổng </p>
+            <p class="col-3" id="total"> </p>
+            <div class="col-6" >
+                <button class="btn btn-primary btn-sm " id="payall-btn">thanh toán hết </button>
+            </div>
+        </div>
+        <div class="personal-info hidden">
+            <div class="register">
+                <h1>thông tin</h1>
+                <button class="close-info" style="color: white;">&times;</button>
+                <form action="/personal/edit-user" method="POST" enctype="multipart/form-data">
+                  <div class="col-md-8 mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" disabled name="email" placeholder="input your Email" value="<%=user.email%>" required>
+                  </div>
+                  
+                  <div class=" g-3 mb-3">
+                    <div class="col-md-6">
+                      <label for="name" class="form-label">name</label>
+                      <input type="tel" class="form-control" id="name" name="name"placeholder="name" value="<%=user.name%>" required>
+                    </div> 
+                    <div class="col-md-4">
+                        <img src="<%=user.avatar%>" height="50px" width="50px" alt="">
+                        <button class="btn btn-primary btn-sm" id="edit-avatar-btn">chỉnh sửa</button>
+                        <div class="hidden" id="new-avatar">
+                            <label for="avatar" class="form-label">avatar mới</label>
+                            <input type="file" class="form-control" id="avatar" name="avatar_user"  >
+                        </div>
+                     
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <label for="phone" class="form-label">phone</label>
+                    <input type="tel" class="form-control" id="phone" name="phone"placeholder="Phone number" value="<%=user.phone%>" >
+                  </div>
+                            
+                <button class="btn btn-primary">thay đổi</button>  
+              </form>
+              </div>
+        </div>
+        <div class="overlay hidden"></div>
+
+</div>
+
+
+<script src="/javascripts/client/personal.js"></script>
+<%-include ("../layouts/footer") %>

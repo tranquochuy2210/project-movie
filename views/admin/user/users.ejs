@@ -1,0 +1,30 @@
+<%- include ("../layouts/adminHeader") %>
+<section class="p-4 my-container">
+  <button class="btn my-4" id="menu-btn">Toggle Sidebar</button>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">tên</th>
+        <th scope="col">quyền </th>
+        <th scope="col">xem </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.forEach((user)=>{ %>
+        <tr>
+          <th><%=user.id%></th>
+          <td><%=user.name%></td>
+          <td><%=user.role%></td>
+          <td><a href="/api/admin/user/user/<%=user.id%>"><span><i class="fas fa-search"></i></span></a>
+          </td>
+       
+        </tr>
+      <% }) %>
+
+    </tbody>
+  </table>
+</section>
+
+
+<%- include ("../layouts/adminFooter") %>

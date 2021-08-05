@@ -1,0 +1,80 @@
+<%-include ("../layouts/header") %>
+<section class="container" id="banner">
+<a href="" style="color: white;">trang chu</a> <i class="fas fa-forward" style="color: white;"></i> <a href="">phim</a>
+<div class="info">
+<img src="<%=movie.poster%>" width="300" height="500" alt="">
+<div>
+    <p id="movieId" style="display: none;"><%=movie.id%></p>
+    <h1><%=movie.name%></h1>
+    <p><%=movie.description%></p>
+    <p>Khởi chiếu: <%=movie.startDate%></p>
+    <p>Thời lượng: <%=movie.time%> phút</p>
+    <button id="show-trailer" class="btn btn-success btn-lg">xem trailer</button>
+    <a href="#showtimes"><button class="btn btn-success btn-lg">mua vé ngay </button></a>
+</div>
+</div>
+</section>
+<div class="trailer hidden">
+    <button class="close-trailer">&times;</button>
+    <iframe id="iframe1" src="<%=movie.trailer%>" width="800" height="500"  frameborder="0">
+    </iframe>
+</div>
+<div class="overlay hidden"></div>
+<section id="showtimes">
+    <h2>Lịch CHiếu</h2>
+    <hr>
+    <div id="seat" >
+        <table class="show-seat" >
+            <tr id="rowa">
+                
+            </tr>
+            <tr id="rowb">
+                
+            </tr>
+        </table>
+        <div class="description"> 
+            <div class="small-div">đang chọn <span class="yellow"></span></div> 
+            <div class="small-div">đã đặt <span class="red"></span></div>
+            <div class="small-div">trống <span class="white"></span></div>
+        </div>
+        
+            <button id="book-ticket"  class="btn btn-success btn-md">Đặt</button>  
+        
+    </div>
+    <div id="btndates">
+        <button id="btndate0" class="btn btn-success"></button>
+        <button id="btndate1" class="btn btn-success"></button>
+        <button id="btndate2" class="btn btn-success"></button>
+        <button id="btndate3" class="btn btn-success"></button>
+        <button id="btndate4" class="btn btn-success"></button>
+        <button id="btndate5" class="btn btn-success"></button>
+    </div>
+    <div class="displayshowtime">
+       
+        
+       <table class="showtime">
+           <thead>
+            <th>Rạp</th>
+            <th>Địa chỉ</th>
+            <th>Giờ chiếu</th>
+            <th>Đặt vé</th>
+           </thead>
+        <tbody>  
+                 
+        </tbody>
+           
+       </table>
+    </div>
+</section>
+
+<script id="showtime-template" type="text/html">
+    <tr>
+        <td>{{cinema}}</td>
+        <td>{{address}}</td>
+        <td>{{startTime}}</td>
+        <td><a href="#showtimes"> <button class="showtime-btn btn btn-primary" id="showtime{{showtime}}">đặt vé</button> </a></td>
+    </tr>         
+</script>
+
+<%-include ("../layouts/footer") %>
+<script src="/javascripts/client/movie.js"></script>

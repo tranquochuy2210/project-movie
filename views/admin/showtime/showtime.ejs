@@ -1,0 +1,90 @@
+<%- include ("../layouts/adminHeader") %>
+<section class="px-5 my-container">
+    <button class="btn my-4" id="menu-btn">Toggle Sidebar</button>
+
+<form action="/api/admin/showtime/addshowtime" class="row" method="POST">
+    <div class="col-6">
+        <label for="cinema_movie" class="form-label"><strong>Cinema-movie</strong> </label>
+        <select class="form-select" name="cinema_movieId" id="cinema_movie" aria-label="Default select example" required>
+            <% cinemasMovies.forEach((cinema_movie)=>{ %>
+                <option value="<%=cinema_movie.id%>"><%=cinema_movie.Movie.name%> chiếu ở <%=cinema_movie.Cinema.name%> </option> 
+            <% }) %>
+          </select>
+    </div>
+
+    <div class="col-4">
+        <label for="startTime" class="form-label"> <strong>Start time</strong> </label>
+        <input type="datetime-local" name="startTime" class="form-control" id="startTime" required>
+    </div> 
+    <div class="col-3">
+        <label for="price" class="form-label"><strong>Giá</strong> </label>
+        <input type="number" class="form-control" min="1000" step="1000" name="price" id="price" required>
+    </div>
+    <div class="col-3" >
+        <label for="type" class="form-label"><strong>Loại</strong> </label>
+        <select class="form-select" name="type" id="type" aria-label="Default select example" required>
+            <option value="2D">2D</option>
+            <option value="3D">3D</option>
+        </select>
+    </div>
+    <div class="gy-4">
+        <button class="btn btn-primary ">thêm suất chiếu</button>
+    </div> 
+</form>
+<hr>
+<h1>Suất chiếu</h1>
+<table class="table">
+    <thead>
+        <tr>
+          <th scope="col" class="col-md-2">Thời Gian</th>
+          <th scope="col" class="col-md-2">Rạp</th>
+          <th scope="col" class="col-md-3">Tên Phim</th>
+          <th scope="col" class="col-md-1">Hủy </th>
+          <th scope="col" class="col-md-4">Ghế</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% showtimes.forEach((showtime)=>{ %>
+            <tr>
+                <td>
+                    <%=showtime.startTime %>
+                </td>
+                <td>
+                    <%=showtime.Cinema_movie.Cinema.name %>
+                </td>
+                <td>
+                    <%=showtime.Cinema_movie.Movie.name %>
+                </td>
+               <td>
+                <a href="/api/admin/showtime/deleteshowtime/<%=showtime.id%>">hủy</a>
+               </td>
+                <td>
+                    <button class="btn btn-primary" onclick="showAndHide('seat<%=showtime.id%>')"> xem ghế</button>
+                    <div class="hidden" id="seat<%=showtime.id%>">
+                        <% showtime.seats.forEach((seat)=>{ %>
+                            <% if(seat.status){ %>
+                                <button style="background-color: red;"><%=seat.name%></button>
+                            <% }else{ %>
+                                <button style="background-color: white;"><%=seat.name%></button>
+                            <%}%>
+                            
+                        <% }) %>
+                    </div>              
+                </td>  
+            </tr>
+            
+        <% }) %>
+    </tbody>
+</table>
+
+
+</section>
+<script>
+    function showAndHide(id){
+    let target=document.getElementById(id)
+    target.classList.toggle('hidden')
+  }
+</script>
+
+
+<%- include ("../layouts/adminFooter") %>

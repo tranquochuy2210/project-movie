@@ -1,0 +1,32 @@
+<%- include ("../layouts/adminHeader") %>
+<section class="p-4 my-container">
+  <button class="btn my-4" id="menu-btn">Toggle Sidebar</button>
+<ul id="cineplex" >
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col" colspan="2">action</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      
+      <% cineplexes.forEach(function(cineplex){ %>
+        <tr>
+          <th scope="row"><%=cineplex.id%></th>
+          <th><%=cineplex.name%></th>
+          <th><a href="deletecineplex/<%=cineplex.id%>">delete</a></th>
+          <th><a href="editcineplex/<%=cineplex.id%>">edit</a></li></th>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+    
+</ul>
+<form action="addcineplex" method="GET">
+    <button>add cineplex</button>
+</form>
+</section>
+<%- include ("../layouts/adminFooter") %>

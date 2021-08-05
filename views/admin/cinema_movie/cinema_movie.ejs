@@ -1,0 +1,59 @@
+<%- include ("../layouts/adminHeader") %>
+<section class="p-4 my-container px-5">
+    <button class="btn my-4" id="menu-btn">Toggle Sidebar</button>
+<form action="addcinemamovie" method="POST" class="row">
+    <div class="col-md-4">
+        <label for="movieId" class="form-label">Tên phim</label>
+        <select class="form-select" name="movieId" id="movieId" aria-label="Default select example">
+            <% movies.forEach((movie)=>{ %>
+                <option value="<%=movie.id%>"><%=movie.name%></option>
+                
+            <% }) %>
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label for="cinemaId" class="form-label">cinema</label>
+        <select name="cinemaId" id="cinemaId" class="form-select" aria-label="Default select example">
+          
+            <% cinemas.forEach((cinema)=>{ %>
+                <option value="<%=cinema.id%>"><%=cinema.name%></option>
+                
+            <% }) %>
+        </select>
+    </div>
+    <div class="col-md-1 py-4">
+        <button class="btn btn-primary btn-md ">add</button>
+    </div>
+   
+</form>
+
+<hr>
+<div id="show_cinema_movie" >
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="col-1">#</th>
+            <th scope="col" class="col-5">tên phim</th>
+            <th scope="col" class="col-3">rạp</th>
+            <th scope="col">xoa</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+            <% cinemas_movies.forEach((cinema_movie)=>{ %>
+                <tr>
+                    <th scope="row"><%=cinema_movie.id%></th>
+                    <td><%= cinema_movie.Movie.name %></td>
+                    <td><%= cinema_movie.Cinema.name %></td>
+                    <td><a href="/api/admin/cinemamovie/deletecinemamovie/<%= cinema_movie.Movie.id %>-<%= cinema_movie.Cinema.id%>" onclick="return confirm('Are you sure, you want to delete it?')">delete</a></td>
+                   
+                </tr>
+               
+               <%})%> 
+        </tbody>
+      </table>
+</div>
+</section>
+
+
+<%- include ("../layouts/adminFooter") %>

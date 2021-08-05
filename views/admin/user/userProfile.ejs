@@ -1,0 +1,38 @@
+
+<%- include ("../layouts/adminHeader") %>
+<section class="px-5 my-container"  >
+    <button class="btn my-4" id="menu-btn">Toggle Sidebar</button>
+    <h6><a href="/api/admin/user/users">quay lại</a></h6>
+    <div style="border: solid grey; width:35%;height: 80vh;padding: 30px ;margin: 0 auto; box-shadow: 10px 10px 5px rgb(168, 168, 168);line-height: 3;">
+          
+        <img src="<%=avatar%>" alt="" width="100px" height="100px" style="border-radius: 50%;display: block; margin: 5% auto;">
+        <h1>
+            <%=name%>   
+        </h1>
+        <div>
+            <span><strong>Email</strong> : <%=email%></span>
+        </div>
+        <div>
+            <span><strong>Phone</strong> : <%=phone%></span>
+        </div>
+        <div>
+            <span><strong>Role</strong> : <%=role%></span>
+        </div>
+       <div>
+           <span><strong>Ngày Tham gia</strong> : <%=createdAt%></span>
+       </div>
+    </div>
+    
+
+</section>
+
+
+   
+  
+  
+
+
+
+
+
+<%- include ("../layouts/adminFooter") %>

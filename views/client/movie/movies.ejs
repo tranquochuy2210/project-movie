@@ -1,0 +1,17 @@
+<%- include ('../layouts/header') %>
+<h1> Tất cả phim</h1>
+<div class="row container px-5 py-4">
+    <% movies.forEach((movie)=>{ %>
+        <div class="card col-md-3 px-4" >
+          <img src="<%=movie.poster%>" class="card-img-top rounded" style="height: 300;" alt="...">
+          <div class="card-body">
+            <h6 class="card-title"><%=movie.name%></h6>
+            <p class="card-text"></p>
+            <a href="movie/<%=movie.id%>" class="btn btn-success">mua ve ngay</a>
+          </div>
+      </div>
+       <% }) %>
+</div>
+    
+
+  <%- include ('../layouts/footer') %>
